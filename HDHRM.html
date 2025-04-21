@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phần mềm ABC - Trang Hướng Dẫn</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    .guide-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 180px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #4facfe;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #00c6ff;
+    }
+
+    img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    #currentGuide {
+      white-space: pre-wrap;
+      margin-top: 15px;
+      background: #f2f2f2;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Phần mềm ABC</h1>
+  <p>Quản lý công việc hiệu quả, dễ sử dụng</p>
+</header>
+
+<div class="container">
+  <img src="https://via.placeholder.com/800x300?text=Ảnh+phần+mềm" alt="Ảnh phần mềm">
+
+  <button onclick="toggleGuide()">📖 Xem Hướng Dẫn</button>
+
+  <div class="guide-section" id="guideSection">
+    <h2>Cập nhật hướng dẫn sử dụng</h2>
+    <textarea id="guideInput" placeholder="Nhập nội dung hướng dẫn tại đây..."></textarea>
+    <br>
+    <button onclick="saveGuide()">💾 Lưu</button>
+    <button onclick="clearGuide()">🗑️ Xóa</button>
+
+    <h3>Nội dung hiện tại:</h3>
+    <div id="currentGuide"></div>
+  </div>
+</div>
+
+<script>
+  function toggleGuide() {
+    const section = document.getElementById('guideSection');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  }
+
+  window.onload = function () {
+    const guide = localStorage.getItem('huongdan');
+    if (guide) {
+      document.getElementById('currentGuide').innerText = guide;
+    }
+  };
+
+  function saveGuide() {
+    const content = document.getElementById('guideInput').value;
+    localStorage.setItem('huongdan', content);
+    document.getElementById('currentGuide').innerText = content;
+    alert("✅ Đã lưu hướng dẫn!");
+  }
+
+  function clearGuide() {
+    localStorage.removeItem('huongdan');
+    document.getElementById('currentGuide').innerText = '';
+    alert("❌ Đã xóa nội dung.");
+  }
+</script>
+
+</body>
+</html>
